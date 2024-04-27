@@ -6,9 +6,6 @@ import (
 	"fmt"
 	"os"
 	"runtime/pprof"
-
-	_ "image/jpeg"
-	_ "image/png"
 )
 
 func main() {
@@ -21,7 +18,8 @@ func main() {
 	pprof.StartCPUProfile(f)
 	defer pprof.StopCPUProfile()
 
-	img, err := image.GetImageFromFilePath("C:\\Users\\starw\\Pictures\\Screenshots\\Screenshot 2023-12-09 191454.png")
+	img, err := image.GetImageFromFilePath("C:\\Users\\starw\\Pictures\\Screenshots\\Screenshot 2024-04-04 223504.png")
+	// img, err := image.GetImageFromFilePath("C:\\Users\\starw\\Pictures\\Screenshots\\Screenshot 2024-03-31 140256.png")
 	if err != nil {
 		fmt.Println("Error reading image:", err)
 		return
@@ -34,11 +32,10 @@ func main() {
 	}
 
 	img = image.ResizeImage(img, width, height-1)
+	convertOptions := image.ConvertOptions{
+		Color: true,
+	}
 
-	// for i := 0; i < 100; i++ {
-	// 	terminal.MoveCursorToStart()
-	// 	fmt.Print(image.ConvertToASCII(img))
-	// }
-
-	fmt.Printf("runes in \033[38;2;1;255;20mrgb\033[0m %d\n", len([]rune("\033[38;2;20;90;200m")))
+	terminal.MoveCursorToStart()
+	fmt.Print(image.ConvertToASCII(img, convertOptions))
 }

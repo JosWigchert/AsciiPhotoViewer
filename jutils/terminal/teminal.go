@@ -17,6 +17,5 @@ func GetTerminalSize() (width, height int, err error) {
 }
 
 func MoveCursorToStart() {
-	fmt.Print("\033[H")  // ANSI escape code for moving cursor to the top-left corner
-	fmt.Print("\033[#B") // ANSI escape code for moving cursor to the top-left corner
+	fmt.Print("\033[H") // ANSI escape code for moving cursor to the top-left corner
 }
